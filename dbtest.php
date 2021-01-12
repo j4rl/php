@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>dbTest</title>
+    <link rel="stylesheet" href="yo.css">
 </head>
 <?php
 $host="localhost";
