@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="yo.css">
+    <script src="app.js"></script>
 </head>
 <body>
     <h1>Variabler JS</h1>
@@ -27,8 +28,8 @@
         document.write('<br>'+varNum)
         varNum-="2"   //Ta bort strängen '2' från strängen '42' (should be '4' right? No!?)
         document.write('<br>'+varNum)
-
     </script>
+    
     <h1>Variabler PHP</h1>
     <?php 
         echo "Hello World!";
