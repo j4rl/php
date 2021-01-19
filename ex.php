@@ -12,7 +12,7 @@
         <?php 
             if(isset($_POST['btnSubmit'])){
                 $result=(double)$_POST['tal1']+(double)$_POST['tal2'];
-                echo "Result: ".$result;                
+                echo "Result: $result";                
             }
         ?>
         </div>
@@ -24,3 +24,4 @@
     </div>
 </body>
 </html>
+

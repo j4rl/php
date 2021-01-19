@@ -10,8 +10,8 @@ $user="root";
 $pass="";
 $dbName="dbsData";
 $conn=mysqli_connect($host,$user,$pass,$dbName);
-
-?><body>
+?>
+<body>
 <?php
 if (isset($_POST['btnSubmit'])){
     $dbstatus=$_POST['status'];
