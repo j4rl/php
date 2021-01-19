@@ -4,7 +4,7 @@
 class Crypt{
     private $password;
 
-    function __construct($passkey="My current passkey is 100% safe")
+    function __construct($passkey="My current passkey is 100% safe!")
     {
         $this->password=$passkey;
     }
