@@ -7,13 +7,7 @@
     <link rel="stylesheet" href="k.css">
 </head>
 <body>
-    <form action="k.php" method="post" name="frmBil" id="frmBil">
-        <input type="text" name="txtVendor" placeholder="Bilmärke" required>
-        <input type="text" name="txtModel" placeholder="Bilmodell" required>
-        <input type="text" name="txtHP" placeholder="Antal hästkrafter" required>
-        <input type="color" name="clrColor">
-        <input type="submit" name="btnSubmit" value="Registrera">
-    </form>
+
     <?php
         if(isset($_POST['btnSubmit'])){
             $vendor=$_POST['txtVendor'];
@@ -29,7 +23,17 @@
                 </div>
 
             <?php
-        }
+        }else{ ?>
+
+    <form action="k.php" method="post" name="frmBil" id="frmBil">
+        <input type="text" name="txtVendor" placeholder="Bilmärke" required>
+        <input type="text" name="txtModel" placeholder="Bilmodell" required>
+        <input type="text" name="txtHP" placeholder="Antal hästkrafter" required>
+        <input type="color" name="clrColor">
+        <input type="submit" name="btnSubmit" value="Registrera">
+    </form>
+
+<?php        }
     ?>
     <?php   //for use most of the times ?>
     <?  //for use when to print a single var ?>
