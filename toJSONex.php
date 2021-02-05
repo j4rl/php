@@ -12,9 +12,9 @@ $conn=mysqli_connect($host,$user,$pass,$db) or die("Couldn't connect!");
 /**
  * data2JSON
  * Returns data from database formatted as JSON with the object name data
- * @param $connOBJ {object} the database connection object.
- * @param $txtSQL {string} String with SQL-formatted question.
- * @return JSON formatted string
+ * @param object $connOBJ the database connection object.
+ * @param string $txtSQL String with SQL-formatted question.
+ * @return string JSON formatted string
  */
  function data2JSON($connOBJ, $txtSQL){
     $result = mysqli_query($connOBJ, $txtSQL) or die(mysqli_error($conn));
