@@ -8,12 +8,15 @@ $pass="";
 $db="dbsData";
 $conn=mysqli_connect($host,$user,$pass,$db) or die("Couldn't connect!");
 
-/**data2JSON
+
+/**
+ * data2JSON
  * Returns data from database formatted as JSON with the object name data
  * @param $connOBJ {object} the database connection object.
- * @return $txtSQL {string} String with SQL-formatted question.
+ * @param $txtSQL {string} String with SQL-formatted question.
+ * @return JSON formatted string
  */
-function data2JSON($connOBJ, $txtSQL){
+ function data2JSON($connOBJ, $txtSQL){
     $result = mysqli_query($connOBJ, $txtSQL) or die(mysqli_error($conn));
     $str= '{"data":[';
         while($rad=$result->fetch_assoc()){
