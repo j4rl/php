@@ -55,14 +55,22 @@ class Database extends Crypt
      * Constructor
      * connects to a database with the given parameters otherwise default values are set.
      * @param string $db_name
-     * @param string $host
-     * @param string $username
-     * @param string $password
+     * @param string $host (default value localhost)
+     * @param string $username (default value root)
+     * @param string $password (default value blank)
      */
     function __construct($db_name, $host="localhost", $username="root", $password="") {
         $this->mysqli = mysqli_connect($host, $username, $password, $db_name);
     }
-
+    /**
+     * fix
+     * Takes a string and fixes malicous stuff in it, for use with SQL questions
+     * @param string $strFix The string to be fixed
+     * @return string The fixed string
+     */
+    public function fix($strFix){
+        return $this->mysqli->real_escape_string($strFix);
+    }
     /**
      * runQuery
      * Runs a SQL-question to the database and returns the resulting object or value
@@ -70,7 +78,8 @@ class Database extends Crypt
      * @return object or integer
      */
     public function runQuery($strQuery){
-        return $this->mysqli->query($strQuery);
+        $strSQL=$this->fix($strQuery);
+        return $this->mysqli->query($strSQL);
     }
     /**
      * delRow
@@ -82,30 +91,31 @@ class Database extends Crypt
     public function delRow($ID,$table){
         $strTable=strtolower(substr($table,3,strlen($table)));
         $tmpSTrID=$strTable."ID";
-        $query="DELETE FROM $table WHERE $tmpSTrID=$ID";
+        $query=$this->fix("DELETE FROM $table WHERE $tmpSTrID=$ID");
         return $this->mysqli->query($query);
     }
 
     /**
- * data2JSON
- * Returns data from database formatted as JSON with the object name data
- * @param $connOBJ {object} the database connection object.
- * @param $txtSQL {string} String with SQL-formatted question.
- * @return JSON formatted string
- */
- public function data2JSON($txtSQL){
-    $result = $this->mysqli->query($txtSQL);
-    $str= '{"data":[';
-        while($rad=$result->fetch_assoc()){
-            $userID=$rad['userID'];
-            $username=$rad['username'];
-            $password=$rad['password'];
-            $userlevel=$rad['userlevel'];
-            $str=$str.'{"userID":'.$userID.',"username":"'.$username.'","password":"'.$password.'","userlevel":'.$userlevel.'},';
-        };   
-        $str=rtrim($str, ",");
-        $str=$str."]}";
-        return $str;
+    * data2JSON
+    * Returns data from database formatted as JSON with the object name data
+    * @param $connOBJ {object} the database connection object.
+    * @param $txtSQL {string} String with SQL-formatted question.
+    * @return JSON formatted string
+    */
+    public function data2JSON($txtSQL){
+        $txtQuery=$this->fix($txtSQL);
+        $result = $this->mysqli->query($txtQuery);
+        $str= '{"data":[';
+            while($rad=$result->fetch_assoc()){
+                $userID=$rad['userID'];
+                $username=$rad['username'];
+                $password=$rad['password'];
+                $userlevel=$rad['userlevel'];
+                $str=$str.'{"userID":'.$userID.',"username":"'.$username.'","password":"'.$password.'","userlevel":'.$userlevel.'},';
+            };   
+            $str=rtrim($str, ",");
+            $str=$str."]}";
+            return $str;
 }
 
     /**
@@ -116,7 +126,7 @@ class Database extends Crypt
      */
     public function getAll($table)
     {
-        $query = "SELECT * FROM $table";
+        $query = $this->fix("SELECT * FROM $table");
         return $this->mysqli->query($query)->fetch_all();
     }
     /**
