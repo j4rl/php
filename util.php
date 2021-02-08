@@ -18,7 +18,7 @@ class Crypt{
      * enc
      * Encodes the provided string to crypted string
      * @param string $plaintext
-     * @return string
+     * @return string Crypted string
      */
     function enc($plaintext) {
         $method="AES-256-CBC";
@@ -31,8 +31,8 @@ class Crypt{
     /**
      * dec
      * Decodes a crypted string
-     * @param string $ivHashCiphertext
-     * @return string
+     * @param string $ivHashCiphertext A crypted string
+     * @return string The uncrypted string
      */
     function dec($ivHashCiphertext) {
         $method="AES-256-CBC";
