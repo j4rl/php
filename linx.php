@@ -28,15 +28,15 @@
 <body>
     <div class="main">
         <form action="linx.php" method="post">
-            <input type="text" name="txtURL" id="txtURL" placeholder="Skriv din länk här inklusive http://">
+            <input type="text" name="txtURL" id="txtURL" placeholder="Skriv din länk här inklusive http://" pattern="http.?:\/\/.*" >
             <input type="text" name="txtDesc" id="txtDesc" placeholder="Beskrivning">
             <button type="submit" name="btnSubmit" value="Submit">Lägg in</button>
         </form>
         <?php 
-            $sql = "SELECT * FROM tbllinx LIMIT 3";
+            $sql = "SELECT * FROM tbllinx ORDER BY linxID DESC LIMIT 3";
             $result = mysqli_query($conn, $sql);
             while($rad=mysqli_fetch_assoc($result)){
-                echo "<br><hr><a href='".$rad['linkURL']."'>".$rad['linkDesc']."</a><br>"; 
+                echo "<br><a href='".$rad['linkURL']."'>".$rad['linkDesc']."</a>"; 
             }
         ?>
     </div>
