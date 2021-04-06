@@ -14,7 +14,7 @@
     } 
 ?>
     <form name="frmForm" id="frmForm" action="form.php?stuff=Kim%20Hultgren" method="POST">
-        <input type="text" name="txtField" id="txtField" placeholder="Personnummer 12 siffror" pattern="(19|20)[0-9]{6}-[0-9]{4}" title="yyyymmdd-nnnn">
+        <input type="text" name="txtField" id="txtField" placeholder="Personnummer 12 siffror" pattern="(19|20)[0-9]{6}-[0-9]{4}" title="ååååmmdd-nnnn">
         <button type="submit" name="btnSubmit" id="btnSubmit" value="-">Tryck</button>
     </form>
 </body>
