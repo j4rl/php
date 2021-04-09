@@ -34,3 +34,26 @@ button {
     font-size: 2rem;
     float: right;
 }
+
+.ruta {
+    width: 50%;
+    font-size: 2rem;
+    font-family: sans-serif;
+    padding: 2rem;
+    margin-top: 1rem;
+    background: #666;
+    border: 2px solid black;
+    border-radius: 20px;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    background: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 10px;
+}
