@@ -25,12 +25,12 @@ $conn=mysqli_connect($host,$user,$pass,$db) or die("Couldn't connect!");
              $str=$str.'{"userID":'.$userID.',"username":"'.$username.'","password":"'.$password.'","userlevel":'.$userlevel.'},';
          };   
          $str=rtrim($str, ",");
-        $str=$str."]}";
+         $str=$str."]}";
          return $str;
  }
 echo data2JSON($conn, "SELECT * FROM tbluser");
 
-
+/*
 //--------------------------------Plain QD solution with echo
     $sql="SELECT * FROM tbluser";
     $result = mysqli_query($conn,$sql) or die(mysqli_error($conn));
@@ -44,5 +44,5 @@ echo data2JSON($conn, "SELECT * FROM tbluser");
        };   
         echo "]}";
 //-----------------------------------------------------------
-
+*/
 ?>
