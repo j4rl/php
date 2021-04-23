@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
  </head>
 <body>
     <div class="content">
@@ -12,8 +13,8 @@
         $host="localhost";
         $user="root";
         $pass="";
-        $db="dbsData";
-        $conn=mysqli_connect($host,$user,$pass,$db);
+        $db="dbsdata";
+        $conn=mysqli_connect($host,$user,$pass,$db) or die("Couldn't connect!");
         if(isset($_POST['btnLogin'])){
             $username=$_POST['username']; //Gotta make variable for the SQL
             $password=md5($_POST['password']);
@@ -38,6 +39,8 @@
                         echo "Ohhh, admin!";
                     }
                 }
+            }else{
+                echo "Oh, noo!<br>Anyway...";
             }   
         }else{  //else Show form   ?>
         <div class="formbox">
