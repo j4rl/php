@@ -1,54 +1,8 @@
 <?php
-
-/**
- * Crypt
- */
-class Crypt{
-    private $password;
-    /**
-     * Constructor
-     * sets the passkey to the provided string otherwise a default passkey is set
-     * @param string $passkey
-     */
-    function __construct($passkey="My current passkey is 100% safe!")
-    {
-        $this->password=$passkey;
-    }
-    /**
-     * enc
-     * Encodes the provided string to crypted string
-     * @param string $plaintext
-     * @return string Crypted string
-     */
-    function enc($plaintext) {
-        $method="AES-256-CBC";
-        $key = hash('sha256', $this->password, true);
-        $iv = openssl_random_pseudo_bytes(16);
-        $ciphertext = openssl_encrypt($plaintext, $method, $key, OPENSSL_RAW_DATA, $iv);
-        $hash = hash_hmac('sha256', $ciphertext, $key, true);
-        return $iv . $hash . $ciphertext;
-    }
-    /**
-     * dec
-     * Decodes a crypted string
-     * @param string $ivHashCiphertext A crypted string
-     * @return string The uncrypted string
-     */
-    function dec($ivHashCiphertext) {
-        $method="AES-256-CBC";
-        $iv = substr($ivHashCiphertext, 0, 16);
-        $hash = substr($ivHashCiphertext, 16, 32);
-        $ciphertext = substr($ivHashCiphertext, 48);
-        $key = hash('sha256', $this->password, true);
-        if (hash_hmac('sha256', $ciphertext, $key, true) !== $hash) return null;
-        return openssl_decrypt($ciphertext, $method, $key, OPENSSL_RAW_DATA, $iv);
-    }
-}
-
 /**
  * Database
  */
-class Database extends Crypt
+class Database
 {
 
     /**
@@ -98,6 +52,7 @@ class Database extends Crypt
     /**
     * data2JSON
     * Returns data from database formatted as JSON with the object name data
+    * Requires a specific table layout to work at all. But you can easily modify this to your needs
     * @param $connOBJ {object} the database connection object.
     * @param $txtSQL {string} String with SQL-formatted question.
     * @return JSON formatted string
