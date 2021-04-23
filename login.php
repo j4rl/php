@@ -17,7 +17,7 @@
         $conn=mysqli_connect($host,$user,$pass,$db) or die("Couldn't connect!");
         if(isset($_POST['btnLogin'])){
             $username=$_POST['username']; //Gotta make variable for the SQL
-            $password=md5($_POST['password']);
+            $password=$_POST['password'];
             $strQuery="SELECT * FROM tblUser WHERE username='$username' AND password='$password';";  
             if($result=mysqli_query($conn,$strQuery)){ //Was it possible to question the database for this?
                 if(!mysqli_num_rows($result)==1){   //It was, now check if it didn't was just one row
