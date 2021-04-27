@@ -5,12 +5,13 @@ function nokia(){
     $user="root";
     $pass="";
     $db="dbsdata";
-    $conn=mysqli_connect($host,$user,$pass,$db);    
+    $conntmp=mysqli_connect($host,$user,$pass,$db);   
+    return $conntmp; 
 }
 
-function checklogin($usr, $pass){
+function checklogin($usr, $pass, $connobj){
     $strQuery="SELECT * FROM tblUser WHERE username='$usr' AND password='$pass';";  
-    if($result=mysqli_query($conn,$strQuery)){ //Was it possible to question the database for this?
+    if($result=mysqli_query($connobj,$strQuery)){ //Was it possible to question the database for this?
         if(!mysqli_num_rows($result)==1){   //It was, now check if it didn't was just one row
            //echo "Inte inloggad!";  //Batty boy!
            //Now reset all session variables:
