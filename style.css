@@ -59,3 +59,12 @@ a {
     font-size: 10px;
     vertical-align:middle;
 }
+.showname{
+    padding: 1em;
+    min-width: 300px;
+    max-width: 50%;
+    overflow: hidden;
+    border:5px solid blue;
+    border-radius: 20px;
+    background: yellow;
+}
